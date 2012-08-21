@@ -122,18 +122,30 @@ public class Core {
 				temp.renameTo(spoutcraftDir);
 				break;
 			case LINUX:
+				if (temp.listFiles().length == 0) {
+					temp.delete();
+					break;
+				}
 				for (File file : temp.listFiles()) {
 					file.renameTo(new File(spoutcraftDir, file.getName()));
 				}
 				temp.delete();
 				break;
 			case MAC_OS:
+				if (temp.listFiles().length == 0) {
+					temp.delete();
+					break;
+				}
 				for (File file : temp.listFiles()) {
 					file.renameTo(new File(spoutcraftDir, file.getName()));
 				}
 				temp.delete();
 				break;
 			case SOLARIS:
+				if (temp.listFiles().length == 0) {
+					temp.delete();
+					break;
+				}
 				for (File file : temp.listFiles()) {
 					file.renameTo(new File(spoutcraftDir, file.getName()));
 				}
