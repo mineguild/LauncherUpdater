@@ -44,8 +44,16 @@ import java.net.URLClassLoader;
 public class Core {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) throws InterruptedException {
-		File spoutcraftDir = getWorkingDirectory("Spoutcraft");
-		spoutcraftDir.mkdirs();
+		//Old messed up dir
+		File temp = getWorkingDirectory("Spoutcraft");
+		File spoutcraftDir = getWorkingDirectory("spoutcraft");
+		if (temp.exists()) {
+			temp.renameTo(spoutcraftDir);
+		}
+
+		if (!spoutcraftDir.exists() && !spoutcraftDir.mkdirs()) {
+			throw new RuntimeException("The working directory could not be created: " + workingDirectory);
+		}
 
 		File versionFile = new File(spoutcraftDir, "launcherVersion");
 		if (!spoutcraftDir.exists()) {
@@ -233,9 +241,6 @@ public class Core {
 				break;
 			default:
 				workingDirectory = new File(userHome, applicationName + '/');
-		}
-		if ((!workingDirectory.exists()) && (!workingDirectory.mkdirs())) {
-			throw new RuntimeException("The working directory could not be created: " + workingDirectory);
 		}
 		return workingDirectory;
 	}
