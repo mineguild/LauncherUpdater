@@ -46,6 +46,7 @@ Thumbs.db
 .project
 .settings
 MANIFEST.MF
+dependency-reduced-pom.xml
 
 # Netbeans files #
 ##################
