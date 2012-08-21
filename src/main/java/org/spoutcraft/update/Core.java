@@ -37,6 +37,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.NumberFormatException;
+import java.lang.System;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -211,8 +213,14 @@ public class Core {
 	}
 
 	private static boolean checkUpdate(String current, String latest) {
-		int c = Integer.parseInt(current);
-		int l = Integer.parseInt(latest);
+		try {
+			int c = Integer.parseInt(current);
+			int l = Integer.parseInt(latest);
+		} catch (NumberFormatException nfe) {
+			System.out.println("[WARNING] Passed in a build string that cannot be numerically parsed!\n" +
+					"current: " + current + "\n" +
+					"latest: " + latest);
+		}
 		if (c < l) {
 			return true;
 		}
