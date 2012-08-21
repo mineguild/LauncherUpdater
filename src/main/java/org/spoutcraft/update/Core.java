@@ -50,8 +50,8 @@ public class Core {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) throws InterruptedException {
 		//Old messed up dir
-		File temp = getWorkingDirectory("Spoutcraft");
-		File spoutcraftDir = getWorkingDirectory("spoutcraft");
+		temp = getWorkingDirectory("Spoutcraft");
+		spoutcraftDir = getWorkingDirectory("spoutcraft");
 		if (temp.exists()) {
 			handleFaultyFolder();
 		}
