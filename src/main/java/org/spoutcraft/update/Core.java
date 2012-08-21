@@ -115,7 +115,7 @@ public class Core {
 		}
 	}
 
-	private static handleFaultyFolder() {
+	private static void handleFaultyFolder() {
 		OS os = lookupOperatingSystem();
 		switch (os) {
 			case WINDOWS:
