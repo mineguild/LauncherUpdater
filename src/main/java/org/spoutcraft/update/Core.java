@@ -52,7 +52,7 @@ public class Core {
 		}
 
 		if (!spoutcraftDir.exists() && !spoutcraftDir.mkdirs()) {
-			throw new RuntimeException("The working directory could not be created: " + workingDirectory);
+			throw new RuntimeException("The working directory could not be created: " + spoutcraftDir);
 		}
 
 		File versionFile = new File(spoutcraftDir, "launcherVersion");
