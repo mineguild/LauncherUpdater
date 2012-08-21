@@ -44,13 +44,16 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 public class Core {
+	File temp;
+	File spoutcraftDir;
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) throws InterruptedException {
 		//Old messed up dir
 		File temp = getWorkingDirectory("Spoutcraft");
 		File spoutcraftDir = getWorkingDirectory("spoutcraft");
 		if (temp.exists()) {
-			temp.renameTo(spoutcraftDir);
+			handleFaultyFolder();
 		}
 
 		if (!spoutcraftDir.exists() && !spoutcraftDir.mkdirs()) {
@@ -109,6 +112,33 @@ public class Core {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	private static handleFaultyFolder() {
+		OS os = lookupOperatingSystem();
+		switch (os) {
+			case WINDOWS:
+				temp.renameTo(spoutcraftDir);
+				break;
+			case LINUX:
+				for (File file : temp.listFiles()) {
+					file.renameTo(new File(spoutcraftDir, file.getName()));
+				}
+				temp.delete();
+				break;
+			case MAC_OS:
+				for (File file : temp.listFiles()) {
+					file.renameTo(new File(spoutcraftDir, file.getName()));
+				}
+				temp.delete();
+				break;
+			case SOLARIS:
+				for (File file : temp.listFiles()) {
+					file.renameTo(new File(spoutcraftDir, file.getName()));
+				}
+				temp.delete();
+				break;
 		}
 	}
 
