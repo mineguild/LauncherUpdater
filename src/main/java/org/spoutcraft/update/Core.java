@@ -44,8 +44,8 @@ import java.net.URL;
 import java.net.URLClassLoader;
 
 public class Core {
-	File temp;
-	File spoutcraftDir;
+	private static File temp;
+	private static File spoutcraftDir;
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) throws InterruptedException {
@@ -243,9 +243,11 @@ public class Core {
 	}
 
 	private static boolean checkUpdate(String current, String latest) {
+		int c = 1;
+		int l = 1;
 		try {
-			int c = Integer.parseInt(current);
-			int l = Integer.parseInt(latest);
+			c = Integer.parseInt(current);
+			l = Integer.parseInt(latest);
 		} catch (NumberFormatException nfe) {
 			System.out.println("[WARNING] Passed in a build string that cannot be numerically parsed!\n" +
 					"current: " + current + "\n" +
